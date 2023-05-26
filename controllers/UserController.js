@@ -13,6 +13,8 @@ export const register = async (req, res) => {
             email: req.body.email,
             fullName: req.body.fullName,
             avatarUrl: req.body.avatarUrl,
+            number: req.body.number,
+            address: req.body.address,
             passwordHash: hash,
         });
 
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'Не удалось зарегистрироваться',
+            message: err,
         });
     }
 };
@@ -90,7 +92,7 @@ export const getMe = async (req, res) => {
 
         if (!user) {
             return res.status(404).json({
-                message: 'Пользователь не найден',
+                message: req.userId,
             });
         }
 
