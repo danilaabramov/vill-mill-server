@@ -15,6 +15,7 @@ export const register = async (req, res) => {
             avatarUrl: req.body.avatarUrl,
             number: req.body.number,
             address: req.body.address,
+            login: req.body.login,
             passwordHash: hash,
         });
 
@@ -46,7 +47,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ email: req.body.email });
+        const user = await UserModel.findOne({ login: req.body.login });
 
         if (!user) {
             return res.status(404).json({
